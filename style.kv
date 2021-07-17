@@ -1,0 +1,304 @@
+<Home>:
+    name: root.name
+
+    username: User
+    room: Room
+    participants: Participants
+
+    MDCard:
+        size_hint: 1, 0.35 
+        pos_hint: {"center_x": .5, "top": 1}
+
+        FitImage:
+            source: "core/assests/main.png"
+    
+    MDCard:
+        size_hint: 1, 0.8
+        pos_hint: {"center_x": .5, "top": .7}
+        radius: [40, 40]
+
+        FloatLayout:
+            MDLabel:
+                text: "Create Room"
+                font_name: "core/assests/font/Pacifico.ttf"
+                font_size: 35
+                halign: "center"
+                pos_hint: {"center_y": .92}
+                theme_text_color: 'Custom'
+                text_color: app.theme_cls.primary_color
+            
+            MDTextField:
+                id: User
+                hint_text: "username"
+                multiline: False
+                size_hint_x: None
+                max_text_length: 12
+                width: "300dp"
+                pos_hint: {"center_x": .5, "center_y": .78}
+                font_name: app.secondary_font
+                font_name_hint_text: app.secondary_font
+                icon_right: 'account-outline'
+
+            MDTextField:
+                id: Room
+                hint_text: "room name"
+                multiline: False
+                max_text_length: 5
+                pos_hint: {"center_x": .5, "center_y": .68}
+                size_hint_x: None
+                width: "300dp"
+                font_name: app.secondary_font
+                font_name_hint_text: app.secondary_font
+                icon_right: 'door'
+            
+            MDTextField:
+                id: Participants
+                hint_text: "participants limit"
+                multiline: False
+                max_text_length: 2
+                pos_hint: {"center_x": .5, "center_y": .58}
+                size_hint_x: None
+                width: "300dp"
+                font_name: app.secondary_font
+                font_name_hint_text: app.secondary_font
+                icon_right: 'account-group-outline'
+            
+            MDCard:
+                size_hint: None, None
+                width: create_room_btn.width
+                height: create_room_btn.height
+                pos_hint: {"center_x": .5, "center_y": .48}
+                radius: [20]
+                elevation: 13
+            
+                MDFillRoundFlatIconButton:
+                    id: create_room_btn
+                    icon: "access-point-plus"
+                    text: "Create Room"
+                    font_name: app.secondary_font
+                    theme_text_color: 'Custom'
+                    text_color: app.theme_cls.primary_color
+                    md_bg_color: 245, 245, 245, 1
+                    icon_color: app.theme_cls.primary_color
+                    on_release:
+                        root.create_room()
+            
+            MDSeparator:
+                height: "2dp"
+                pos_hint: {"center_x": .5, "center_y": .43}
+                size_hint: 0.8, None
+            
+            MDTextButton:
+                text: "Join an exisiting room!"
+                pos_hint: {"center_x": .5, "center_y": .38}
+                font_name: app.secondary_font
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.primary_color
+                on_release:
+                    root.switch('connect_room')
+
+<ConnectRoom>:
+    name: root.name
+
+    username: User
+    room: Room
+
+    MDCard:
+        size_hint: 1, 0.35 
+        pos_hint: {"center_x": .5, "top": 1}
+
+        FitImage:
+            source: "core/assests/main.png"
+    
+    MDCard:
+        size_hint: 1, 0.8
+        pos_hint: {"center_x": .5, "top": .7}
+        radius: [40, 40]
+
+        FloatLayout:
+            MDLabel:
+                text: "Join Room"
+                font_name: "core/assests/font/Pacifico.ttf"
+                font_size: 35
+                halign: "center"
+                pos_hint: {"center_y": .92}
+                theme_text_color: 'Custom'
+                text_color: app.theme_cls.primary_color
+            
+            MDTextField:
+                id: User
+                hint_text: "username"
+                multiline: False
+                max_text_length: 12
+                size_hint_x: None
+                width: "300dp"
+                pos_hint: {"center_x": .5, "center_y": .78}
+                font_name: app.secondary_font
+                font_name_hint_text: app.secondary_font
+                icon_right: 'account-outline'
+
+            MDTextField:
+                id: Room
+                hint_text: "room name"
+                multiline: False
+                max_text_length: 5
+                pos_hint: {"center_x": .5, "center_y": .68}
+                size_hint_x: None
+                width: "300dp"
+                font_name: app.secondary_font
+                font_name_hint_text: app.secondary_font
+                icon_right: 'door'
+            
+            MDCard:
+                size_hint: None, None
+                width: join_room_btn.width
+                height: join_room_btn.height
+                pos_hint: {"center_x": .5, "center_y": .58}
+                radius: [20]
+                elevation: 13
+            
+                MDFillRoundFlatIconButton:
+                    id: join_room_btn
+                    icon: "access-point"
+                    text: "Join Room"
+                    font_name: app.secondary_font
+                    theme_text_color: 'Custom'
+                    text_color: app.theme_cls.primary_color
+                    md_bg_color: 245, 245, 245, 1
+                    icon_color: app.theme_cls.primary_color
+                    on_release:
+                        root.join_room()
+            
+            MDSeparator:
+                height: "2dp"
+                pos_hint: {"center_x": .5, "center_y": .53}
+                size_hint: 0.8, None
+            
+            MDTextButton:
+                text: "Create a new room!"
+                pos_hint: {"center_x": .5, "center_y": .48}
+                font_name: app.secondary_font
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.primary_color
+                on_release:
+                    root.switch('home')
+
+
+<DisplayUser>:
+    theme_text_color: "Custom"
+    text_color: app.theme_cls.primary_color
+    font_name: app.secondary_font
+
+    IconLeftWidget:
+        id: icon
+        icon: root.icon
+        theme_text_color: "Custom"
+        text_color: app.theme_cls.primary_color
+
+<Message>:
+    size_hint: 0.5, None
+    height: message.height
+    radius: [20]
+
+    MDLabel:
+        id: message
+        text: root.message
+
+<Chat>:
+    name: root.name
+
+    message: Message
+    
+    BoxLayout:
+        orientation: "vertical"
+
+        MDToolbar:
+            title: f"[font={app.secondary_font}][color=f5f5f5][size=25]Let's Chat[/size][/color][/font]"
+            elevation: 2
+            left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+        
+        GridLayout:
+            rows: 2
+            cols: 1
+            row_default_height: self.height - 80
+            row_force_default: True
+
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                size_hint_y: 0.8
+                spacing: 0
+
+                MDList:
+                    id: messages
+            
+            GridLayout:
+                cols: 2
+                rows: 1
+                padding: 20
+                spacing: 20
+
+                MDTextField:
+                    id: Message
+                    hint_text: "Type a message ..."
+                    required: False
+                    max_text_length: 45
+                    multiline: False
+                    size_hint: 0.5, None
+                    height: "30dp"
+                    padding: 5, 5
+
+                MDIconButton:
+                    icon: "send"
+                    font_size: "55dp"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: app.theme_cls.primary_color
+                    pos_hint: {"center_x": .5}
+                    on_release:
+                        root.send_msg()
+
+    MDNavigationDrawer:
+        id: nav_drawer
+
+        GridLayout:
+            rows: 2
+            cols: 1
+            spacing: 5
+
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: "80dp"
+                spacing: 10
+
+                MDCard:
+                    size_hint: 1, None
+                    height: "50dp"
+                    elevation: 6
+                    pos_hint: {"center_x": .5, "top": .95}
+
+                    MDLabel:
+                        id: room_name
+                        font_size: "20sp"
+                        font_name: app.secondary_font
+                        theme_text_color: "Custom"
+                        text_color: app.theme_cls.primary_color
+                        halign: "center"
+                        pos_hint: {"center_y": .5}
+                
+                MDLabel:
+                    text: "Participants"
+                    halign: "center"
+                    font_name: app.secondary_font
+                    theme_text_color: "Custom"
+                    text_color: app.theme_cls.primary_color
+                    font_size: "20sp"
+            
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                size: self.size
+
+                MDList:
+                    id: user_list
