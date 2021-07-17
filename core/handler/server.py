@@ -1,3 +1,4 @@
+import sys
 import socket
 import json
 from threading import Thread
@@ -95,7 +96,7 @@ class Server:
                 self.create_room(data, conn)
             print(self.rooms)
 
-server = Server('192.168.0.104', 8888, 10)
+server = Server(sys.argv[1], 8888, 10)
 
 """
 rooms = {
