@@ -143,7 +143,7 @@ screen_manager = PageManager()
 class LetsChatApp(MDApp):
     primary_font = 'core/assests/font/Pacifico.ttf'
     secondary_font = 'core/assests/font/Russco.ttf'
-    client = Client('192.168.0.104', 8888)
+    client = Client('127.0.0.1', 8888)
 
     def on_stop(self):
         self.client.exit_server()
@@ -155,7 +155,7 @@ class LetsChatApp(MDApp):
         screens = [Home(name="home"), Chat(name="chat"), ConnectRoom(name="connect_room")]
         for screen in screens:
             screen_manager.add_widget(screen)
-        screen_manager.current = 'chat'
+        screen_manager.current = 'home'
 
         return screen_manager
 
